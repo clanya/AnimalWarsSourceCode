@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b728abba085f26a4392caf9dc3f66106, type: 3}
+  m_Name: TestAttackParticlePrefabTable 1
+  m_EditorClassIdentifier: 
+  prefabDataList:
+  - characterType: 1
+    particlePrefab: {fileID: 7120318450711358241, guid: 5ed685d01658a0049b78e3ed961f8477,
+      type: 3}
+  - characterType: 2
+    particlePrefab: {fileID: 3234519145021559733, guid: 99f1cdb1627c41a4a8c5bd188d150425,
+      type: 3}
+  - characterType: 3
+    particlePrefab: {fileID: 6287875756148281986, guid: 2d6de343b9273cc45bc43cf40512c0d6,
+      type: 3}
+  - characterType: 4
+    particlePrefab: {fileID: 5327868068938882299, guid: b1134d70928508f40a28b1e9ae0cfc0a,
+      type: 3}
+  - characterType: 5
+    particlePrefab: {fileID: 3521079764661918501, guid: d6bd6e55cf85a154185eafe6c923400b,
+      type: 3}
+  - characterType: 6
+    particlePrefab: {fileID: 1896867236048036104, guid: 36686426731730e4cb2b655f54442959,
+      type: 3}
+  - characterType: 7
+    particlePrefab: {fileID: 1693224344763274732, guid: 517b8bcd5dc553d41a6db6de1f0f3631,
+      type: 3}
+  - characterType: 8
+    particlePrefab: {fileID: 4791555641810650937, guid: 24fd948015f30964eabe57eb5799d860,
+      type: 3}
+  - characterType: 9
+    particlePrefab: {fileID: 4242439541847822573, guid: eee0c0c99c5b1bb499ea3393c7145213,
+      type: 3}
+  - characterType: 10
+    particlePrefab: {fileID: 5308041721635683428, guid: 9ad0a1f74bce43b418ffe22522f236eb,
+      type: 3}
+  - characterType: 11
+    particlePrefab: {fileID: 3106795950750668917, guid: f5e5d3894c83e084cbc6a5386a9027a3,
+      type: 3}
+  - characterType: 12
+    particlePrefab: {fileID: 1057749853502656090, guid: 213f24674d86c7f489550914717bdc7c,
+      type: 3}

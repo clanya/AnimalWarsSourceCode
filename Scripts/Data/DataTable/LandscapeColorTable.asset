@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da9b66bcc1e45ab40ae5eb4dd425dd6b, type: 3}
+  m_Name: LandscapeColorTable
+  m_EditorClassIdentifier: 
+  landscapeColorDataArray:
+  - landscapeType: -1
+    landscapeColor: {r: 0, g: 0, b: 0, a: 0}
+  - landscapeType: 0
+    landscapeColor: {r: 0.56562173, g: 0.8301887, b: 0.54432184, a: 1}
+  - landscapeType: 1
+    landscapeColor: {r: 0, g: 0.3962264, b: 0.04120758, a: 1}
+  - landscapeType: 2
+    landscapeColor: {r: 0, g: 0.39051163, b: 0.7735849, a: 1}
+  - landscapeType: 4
+    landscapeColor: {r: 0.5283019, g: 0.429346, b: 0, a: 1}
+  - landscapeType: 5
+    landscapeColor: {r: 0.9339623, g: 0.048460312, b: 0.11369009, a: 1}
+  - landscapeType: 6
+    landscapeColor: {r: 0.3679245, g: 0, b: 0.0815777, a: 1}

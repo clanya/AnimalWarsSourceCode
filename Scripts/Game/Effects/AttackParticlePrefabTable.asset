@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b728abba085f26a4392caf9dc3f66106, type: 3}
+  m_Name: AttackParticlePrefabTable
+  m_EditorClassIdentifier: 
+  prefabDataList:
+  - characterType: 1
+    attackParticlePrefab: {fileID: 5024009746357069192, guid: 29201a4d0bffb854a9bfa3ebbe92c6a4,
+      type: 3}
+  - characterType: 2
+    attackParticlePrefab: {fileID: 5024009746357069192, guid: 29201a4d0bffb854a9bfa3ebbe92c6a4,
+      type: 3}
+  - characterType: 3
+    attackParticlePrefab: {fileID: 6739584143946677931, guid: 4214cf1ac0560d94b90ecb6b0fc0fe48,
+      type: 3}
+  - characterType: 4
+    attackParticlePrefab: {fileID: 5024009746357069192, guid: 29201a4d0bffb854a9bfa3ebbe92c6a4,
+      type: 3}
+  - characterType: 5
+    attackParticlePrefab: {fileID: 3280195794560603344, guid: c8a392541eb00da48aef1a7b0bb9af2a,
+      type: 3}
+  - characterType: 6
+    attackParticlePrefab: {fileID: 3280195794560603344, guid: c8a392541eb00da48aef1a7b0bb9af2a,
+      type: 3}
+  - characterType: 7
+    attackParticlePrefab: {fileID: 3280195794560603344, guid: c8a392541eb00da48aef1a7b0bb9af2a,
+      type: 3}
+  - characterType: 8
+    attackParticlePrefab: {fileID: 3280195794560603344, guid: c8a392541eb00da48aef1a7b0bb9af2a,
+      type: 3}
+  - characterType: 9
+    attackParticlePrefab: {fileID: 5024009746357069192, guid: 29201a4d0bffb854a9bfa3ebbe92c6a4,
+      type: 3}
+  - characterType: 10
+    attackParticlePrefab: {fileID: 5024009746357069192, guid: 29201a4d0bffb854a9bfa3ebbe92c6a4,
+      type: 3}
+  - characterType: 11
+    attackParticlePrefab: {fileID: 5024009746357069192, guid: 29201a4d0bffb854a9bfa3ebbe92c6a4,
+      type: 3}
+  - characterType: 12
+    attackParticlePrefab: {fileID: 3280195794560603344, guid: c8a392541eb00da48aef1a7b0bb9af2a,
+      type: 3}
