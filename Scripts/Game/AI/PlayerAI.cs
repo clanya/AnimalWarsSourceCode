@@ -29,7 +29,7 @@ namespace Game.AI
         private MovablePointsExplorer movablePointsExplorer;
         private MoveRouteExplorer moveRouteExplorer;
         private AttackablePointsExplorer attackablePointsExplorer;
-        private CancellationTokenSource token;
+        private CancellationTokenSource tokenSource;
         private PlayerID playerID;
 
         private IEnumerable<BaseCharacter> friendCharacters => characterManager.EnemyCharacterList;
@@ -51,8 +51,8 @@ namespace Game.AI
             attackablePointsExplorer = explorerFactory.GetAttackPointsExplorer(playerID, movablePointsExplorer);
             moveRouteExplorer = explorerFactory.GetMoveRouteExplorer();
 
-            token = new CancellationTokenSource();
-            StartAI(token.Token);
+            tokenSource = new CancellationTokenSource();
+            StartAI(tokenSource.Token);
         }
 
         private async void StartAI(CancellationToken token)
@@ -490,7 +490,8 @@ namespace Game.AI
 
         public void Dispose()
         {
-            token.Cancel();
+            tokenSource.Cancel();
+            tokenSource.Dispose();
         }
     }
 }

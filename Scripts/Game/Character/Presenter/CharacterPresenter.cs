@@ -24,14 +24,14 @@ namespace Game.Character.Presenter
 {
     public sealed class CharacterPresenter: MonoBehaviour
     {
-        [Inject] private TurnManager turnManager;         //おためし
+        [Inject] private TurnManager turnManager;
         [Inject] private ExplorerFactory explorerFactory;
         private MovablePointsExplorer movablePointsExplorer;
         private MoveRouteExplorer moveRouteExplorer;
         [Inject] private NavigationTileViewDirector navigationTileViewDirector;
         [Inject] private CharacterViewDirector viewDirector;
         [Inject] private CharacterModelDirector modelDirector;
-        [Inject] private TargetCharacterExplorer targetCharacterExplorer;   //とりあえずここに置く
+        [Inject] private TargetCharacterExplorer targetCharacterExplorer;
         [Inject] private SkillManager skillManager;
         [SerializeField] private CharacterCommandView characterCommandView;
         [SerializeField] private CharacterStatusView characterStatusView;
@@ -43,7 +43,7 @@ namespace Game.Character.Presenter
         private CharacterModelView targetCharacter;
         private bool IsTargetTurn { get; set; }
         private bool canClickForMove = true;
-        private List<CharacterModelView> characterTmpList { get; } = new();
+        private List<CharacterModelView> characterModelViewList { get; } = new();
 
         private CancellationToken token;
 
@@ -83,7 +83,7 @@ namespace Game.Character.Presenter
             character.SetSkillManager(skillManager);
             var color = GetColor(character.PlayerID);
             view.SetSliderFillColor(color);
-            characterTmpList.Add(new CharacterModelView(character,view,commandView));
+            characterModelViewList.Add(new CharacterModelView(character,view,commandView));
             viewDirector.OnPointerClickedObservable(view);
 
             //Move処理, 移動できるキャラクターが移動できるタイルをクリックしたとき、移動する。
@@ -153,7 +153,7 @@ namespace Game.Character.Presenter
                     BaseCharacter tmpModel;
                     try
                     {
-                        tmpModel = characterTmpList.Single(y => y.View == x).Model;
+                        tmpModel = characterModelViewList.Single(y => y.View == x).Model;
                     }
                     catch (Exception e)
                     {
@@ -201,9 +201,10 @@ namespace Game.Character.Presenter
                     var target = await WaitingForGetTargetCharacter(SelectedCharacter.Param.AttackRange,attackTargetPlayerID);
 
                     await FaceToFace(SelectedCharacter, target, token);
-
-                    SelectedCharacter.AttackAsync(target).Forget();
+                    characterCommandView.ShowView(false);
                     SelectedCharacter.SetIsMovable(false);
+                    SelectedCharacter.AttackAsync(target).Forget();
+                    
                     IsTargetTurn = false;
                 }).AddTo(this);
 
@@ -233,7 +234,6 @@ namespace Game.Character.Presenter
                     {
                         SelectedCharacter.UseSkillAsync().Forget();
                     }
-                    // SelectedCharacter.SetIsActionable(false);
                     SelectedCharacter.SetIsMovable(false);
                 }).AddTo(this);
 
@@ -287,9 +287,9 @@ namespace Game.Character.Presenter
                             var isAttackTargetExists = targetCharacterExplorer.TargetCharacterExists(character.Position,character.Param.AttackRange,attackTargetPlayerID);
                             characterCommandView.SetAttackButtonInteractable(isAttackTargetExists && value);
                             characterCommandView.SetUseSkillButtonInteractable(skillManager.CanUseSkill(character) && value);
-                            if (value == false)
+                            if (!value)
                             {
-                                modelDirector.SetIsLockedSelectedCharacter(false);
+                                modelDirector.SetIsLockedSelectedCharacter(value);
                             }
                         }).AddTo(this);
                 }).AddTo(this);
@@ -306,10 +306,10 @@ namespace Game.Character.Presenter
         public void OnClickedObservable()
         {
             viewDirector.ClickedCharacterObservable
-                .Where(_ => IsTargetTurn == false && modelDirector.IsLockedSelectedCharacter == false)
+                .Where(_ => !IsTargetTurn && !modelDirector.IsLockedSelectedCharacter)
                 .Subscribe(view =>
                 {
-                    var selectedModel = characterTmpList.Single(x => x.View == view).Model;
+                    var selectedModel = characterModelViewList.Single(x => x.View == view).Model;
                     modelDirector.SetSelectedCharacter(selectedModel);
                 }).AddTo(this);
 
@@ -321,7 +321,7 @@ namespace Game.Character.Presenter
                     {
                         //新しく選ばれたcharacterを選択状態にする
                         var characterModel = v.newValue;
-                        var characterView = characterTmpList.Single(x => x.Model == characterModel).View;
+                        var characterView = characterModelViewList.Single(x => x.Model == characterModel).View;
                         selectObj.SetActive(true);
                         var pos = characterView.transform.position;
                         selectObj.SetPositionXZ(pos.x,pos.z);
@@ -331,23 +331,25 @@ namespace Game.Character.Presenter
                     {
                         //前に選んでいたcharacterを戻す
                         var characterModel = v.oldValue;
-                        var commandView = characterTmpList.Single(x => x.Model == characterModel).CommandView;
+                        var commandView = characterModelViewList.Single(x => x.Model == characterModel).CommandView;
                         selectObj.SetActive(false);
                         commandView.ShowView(false);
                         characterStatusView.ShowView(false);
                     }
                     else
                     {
-                        if (v.oldValue != v.newValue)
+                        if (v.oldValue == v.newValue)
                         {
-                            //新しく選ばれたcharacterを選択状態にする
-                            var newModel = v.newValue;
-                            var newView = characterTmpList.Single(x => x.Model == newModel).View;
-                            selectObj.SetActive(true);
-                            var pos = newView.transform.position;
-                            selectObj.SetPositionXZ(pos.x,pos.z);
-                            cameraController.Forcus(newView.transform.position, token).Forget();
+                            return;
                         }
+                        
+                        //新しく選ばれたcharacterを選択状態にする
+                        var newModel = v.newValue;
+                        var newView = characterModelViewList.Single(x => x.Model == newModel).View;
+                        selectObj.SetActive(true);
+                        var position = newView.transform.position;
+                        selectObj.SetPositionXZ(position.x,position.z);
+                        cameraController.Forcus(position, token).Forget();
                     }
                 }).AddTo(this);
         }
@@ -362,7 +364,7 @@ namespace Game.Character.Presenter
                 .Subscribe(view =>
                 {
                     Debug.Log($"SelectedCharacterPoint:{view}");
-                    var targeted = characterTmpList.Single(x => x.View == view).Model;
+                    var targeted = characterModelViewList.Single(x => x.View == view).Model;
                     modelDirector.SetTargetedCharacter(targeted);
                 }).AddTo(this);
         }

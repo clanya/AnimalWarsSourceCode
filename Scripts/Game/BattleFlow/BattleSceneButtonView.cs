@@ -1,8 +1,6 @@
 ﻿using Game.HowToPlay;
 using Game.Options;
 using Game.PoseScene;
-using System.Collections;
-using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;

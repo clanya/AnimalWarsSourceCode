@@ -38,7 +38,7 @@ namespace Game.BattleFlow.Turn
         public void CheckSwapTurn()
         {
             //攻撃中のプレイヤーのキャラクターの中に行動可能なキャラクターがいるか？
-            var isActionableExists = CurrentTurnPlayer.characterList.Where(x => x.IsDead.Value == false)
+            var isActionableExists = CurrentTurnPlayer.characterList.Where(x => !x.IsDead.Value)
                                                              .Any(x => x.IsActionable.Value);
             //いた場合、何もせずreturn.
             if(isActionableExists)

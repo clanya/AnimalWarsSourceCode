@@ -34,7 +34,7 @@ namespace Game.AI
         private MovablePointsExplorer movablePointsExplorer;
         private MoveRouteExplorer moveRouteExplorer;
         private AttackablePointsExplorer attackablePointsExplorer;
-        private CancellationTokenSource token;
+        private CancellationTokenSource tokenSource;
 
         public WeakPlayerAI(PlayerID playerID)
         {
@@ -47,8 +47,8 @@ namespace Game.AI
             moveRouteExplorer = explorerFactory.GetMoveRouteExplorer();
             attackablePointsExplorer = explorerFactory.GetAttackPointsExplorer(playerID, movablePointsExplorer);
 
-            token = new CancellationTokenSource();
-            StartAI(token.Token).Forget();
+            tokenSource = new CancellationTokenSource();
+            StartAI(tokenSource.Token).Forget();
         }
 
         private async UniTask StartAI(CancellationToken token)
@@ -334,7 +334,8 @@ namespace Game.AI
 
         public void Dispose()
         {
-            token?.Cancel();
+            tokenSource?.Cancel();
+            tokenSource?.Dispose();
         }
     }
 }

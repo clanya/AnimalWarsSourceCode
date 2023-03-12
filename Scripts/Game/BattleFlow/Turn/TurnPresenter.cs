@@ -17,19 +17,14 @@ namespace Game.BattleFlow.Turn
 
         private async void TurnAnimation(Unit _)
         {
-            view.SetPanelActive(true);
             await view.TextAnimationAsync(model.CurrentTurnPlayer.playerID, this.GetCancellationTokenOnDestroy());
-            view.SetPanelActive(false);
         }
 
         private void Start()
         {
             model.ChangeTurnObservable.Subscribe(async x =>
             {
-                view.SetPanelActive(true);
                 await view.TextAnimationAsync(model.CurrentTurnPlayer.playerID, this.GetCancellationTokenOnDestroy());
-                view.SetPanelActive(false);
-
             }).AddTo(this);
         }
     }

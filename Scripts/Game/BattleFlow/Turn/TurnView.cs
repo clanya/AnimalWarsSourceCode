@@ -25,6 +25,7 @@ namespace Game.BattleFlow.Turn
 
         public async UniTask TextAnimationAsync(PlayerID playerID, CancellationToken token)
         {
+            SetPanelActive(true);
             var linkedToken = CancellationTokenSource.CreateLinkedTokenSource(token, this.GetCancellationTokenOnDestroy());
             Color color;
             if (playerID == PlayerID.Player1)
@@ -47,7 +48,7 @@ namespace Game.BattleFlow.Turn
                 turnText.color = new Color(color.r,color.g,color.b,a);
                 await UniTask.Delay(1, cancellationToken: linkedToken.Token);
             }
-
+            SetPanelActive(false);
         }
 
     }

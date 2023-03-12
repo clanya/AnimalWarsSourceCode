@@ -11,7 +11,7 @@ namespace Game.Character.Models
         private readonly ReactiveProperty<BaseCharacter> targetedCharacter = new();
         public IReadOnlyReactiveProperty<BaseCharacter> TargetedCharacter => targetedCharacter;
         
-        public bool IsLockedSelectedCharacter { get; private set; }
+        public bool IsLockedSelectedCharacter { get; private set; } //選択中のキャラクターの変更を可とするか否か
         
         public void SetSelectedCharacter(BaseCharacter character)
         {
