@@ -5,17 +5,17 @@
 ファイアーエムブレム風のターン制ストラテジーゲームです。
 
 担当箇所：
-インゲーム部分のプログラム開発(キャラクター周り、ゲームフロー)
-シェーダー開発
-エディタ拡張
+* インゲーム部分のプログラム開発(キャラクター周り、ゲームフロー)
+* シェーダー開発
+* エディタ拡張
 
 以下、自分が担当したプログラム箇所
-Editorフォルダ内の全てのスクリプト
-Shadersフォルダ内の全てのシェーダープログラム
-Scripts/Game/BattleFlow内の全てのスクリプト
-Scripts/Game/Character内のAnimationsフォルダ、Imagesフォルダ、UIフォルダを除く全てのスクリプト
-Scripts/Game/Effects/EffectPlayer.cs
-Scripts/MyUtil/EnumIndexAttribute.cs 
+* Editorフォルダ内の全てのスクリプト
+* Shadersフォルダ内の全てのシェーダープログラム
+* Scripts/Game/BattleFlow内の全てのスクリプト
+* Scripts/Game/Character内のAnimationsフォルダ、Imagesフォルダ、UIフォルダを除く全てのスクリプト
+* Scripts/Game/Effects/EffectPlayer.cs
+* Scripts/MyUtil/EnumIndexAttribute.cs 
 
 ※有償アセットを含むため、プロジェクトではなくソースコードのみ公開しております。
 
