@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using Game.BattleFlow.Character;
 using Game.BattleFlow.Turn;
 using Game.Character;
@@ -27,11 +30,15 @@ namespace Game.BattleFlow
         private void Start()
         {
             Initialize();
+
+            var token = this.GetCancellationTokenOnDestroy();
+            
             turnManager.Result
                 .Skip(1)
                 .Take(1)
-                .Subscribe(x =>
+                .Subscribe( async x =>
                 {
+                    await UniTask.Delay(TimeSpan.FromSeconds(0.5), cancellationToken: token);
                     //結果が出た時の各UIを登録
                     switch (x.playerID)
                     {

@@ -113,9 +113,9 @@ namespace Game.Character.Presenter
                 }).AddTo(this);
             
             character.CurrentStatus.Hp
-                .Subscribe(value =>
+                .Subscribe(async value =>
                 {
-                    view.SetHp(value,character.Param.Hp);
+                    await view.SetHpAnimationAsync(value,character.Param.Hp);
                     if (value <= 0)
                     {
                         character.SetIsDead(true);
